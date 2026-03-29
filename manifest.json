@@ -1,0 +1,41 @@
+{
+	"manifest_version": 3,
+	"name": "WTFgram",
+	"version": "1.0",
+	"description": "Blocks Instagram Reels, Explore and Suggested content",
+	"permissions": [
+		"tabs",
+		"storage",
+		"declarativeNetRequest"
+	],
+	"host_permissions": [
+		"*://*.instagram.com/*"
+	],
+	"background": {
+		"service_worker": "background.js"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"*://*.instagram.com/*"
+			],
+			"js": [
+				"content.js"
+			],
+			"run_at": "document_start"
+		}
+	],
+	"declarative_net_request": {
+		"rule_resources": [
+			{
+				"id": "ruleset_1",
+				"enabled": true,
+				"path": "rules.json"
+			}
+		]
+	},
+	"action": {
+		"default_popup": "popup.html",
+		"default_title": "WTFgram"
+	}
+}
